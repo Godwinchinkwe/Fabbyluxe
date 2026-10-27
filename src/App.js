@@ -1152,7 +1152,7 @@ export function AdminPanel() {
 
 const api = (
   process.env.REACT_APP_API_URL ||
-  "http://localhost:5000/api"
+  "https://fabbyserver.onrender.com/api"
 ).replace(/\/$/, "");
 
 const request = useCallback(
