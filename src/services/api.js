@@ -1,5 +1,5 @@
 const API_BASE_URL = (
-  process.env.REACT_APP_API_URL || 'http://localhost:5000/api'
+  process.env.REACT_APP_API_URL || 'https://fabbyserver.onrender.com/api','http://localhost:5000/api'
 ).replace(/\/$/, '');
 
 export const apiRequest = async (path, options = {}) => {

@@ -152,7 +152,7 @@ const ProductForm = () => {
                   value={form.name}
                   onChange={change}
                   required
-                  placeholder="e.g. Geneva Luxury Watch"
+                  placeholder="e.g. Fabby Luxury Watch"
                 />
               </label>
               <label>
