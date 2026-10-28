@@ -86,6 +86,16 @@ function Header() {
   const [search, setSearch] = useState("");
   const [menu, setMenu] = useState(false);
   const nav = useNavigate();
+
+  const handleHeaderClick = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+
+  setMenu(false);
+};
+
   return (
     <>
       <div className="announcement">
@@ -102,22 +112,27 @@ function Header() {
           {menu ? <FaXmark /> : <FaBars />}
         </button>
 
-        <Link to="/" className="brand">
+        <Link to="/" className="brand" onClick={handleHeaderClick}>
           FABBY <span>LUXE</span>
           <small>STYLE THAT SPEAKS LUXURY</small>
         </Link>
         <nav className={menu ? "nav open" : "nav"}>
-          <Link to="/products">Shop all</Link>
+          <Link to="/products" onClick={handleHeaderClick}>
+  Shop all
+</Link>
 
           {categories.map((c) => (
             <Link
               key={c.name}
               to={"/products?category=" + encodeURIComponent(c.slug || c.name)}
+              onClick={handleHeaderClick}
             >
               {c.name}
             </Link>
           ))}
-          <Link to="/policy">Our policies</Link>
+          <Link to="/policy" onClick={handleHeaderClick}>
+            Our policies
+          </Link>
         </nav>
         <form
           className="search"
@@ -145,6 +160,7 @@ function Header() {
             className="icon-btn wishlist-action"
             to="/account"
             aria-label="Wishlist"
+            onClick={handleHeaderClick}
           >
             <FaRegHeart />
             <i>{wishlistItems.length}</i>
@@ -153,6 +169,7 @@ function Header() {
             className="icon-btn bag-action"
             to="/cart"
             aria-label="Shopping bag"
+            onClick={handleHeaderClick}
           >
             <FaBagShopping />
             <i>{getCartCount()}</i>
@@ -167,10 +184,22 @@ function ProductCard({ product }) {
   const { addToCart, addToWishlist, isInWishlist, removeFromWishlist } =
     useCart();
   const wished = isInWishlist(product.id);
+
+    const handleHeaderClick = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+
+  // setMenu(false);
+};
+
+
+
   return (
     <article className="product-card">
       <div className="product-image-wrap">
-        <Link to={"/product/" + product.id}>
+        <Link to={"/product/" + product.id} onClick={handleHeaderClick}>
           <img
             src={product.image}
             alt={product.name}
@@ -205,7 +234,7 @@ function ProductCard({ product }) {
       </div>
       <div className="product-info">
         <div className="product-category">{product.categoryName || product.category || "Uncategorized"}</div>
-        <Link to={"/product/" + product.id} className="product-name">
+        <Link to={"/product/" + product.id} className="product-name" onClick={handleHeaderClick}>
           {product.name}
         </Link>
         <div className="rating">
